@@ -128,21 +128,134 @@ section.alt{background:var(--bg2)}
 .pf-ext-link svg{flex-shrink:0}
 
 /* EDUCATION */
-.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.edu-card{background:var(--card);border:1px solid var(--border);padding:34px;position:relative;overflow:hidden;cursor:pointer;transition:border-color .22s}
-.edu-card:hover{border-color:var(--border2)}
-.edu-accent-bar{position:absolute;left:0;top:0;bottom:0;width:2px;opacity:.6;transition:opacity .22s}
-.edu-card:hover .edu-accent-bar{opacity:1}
-.edu-year{font-family:'DM Mono',monospace;font-size:.64rem;letter-spacing:3px;color:var(--gold-dim);margin-bottom:12px;text-transform:uppercase}
-.edu-degree{font-family:'Playfair Display',serif;font-size:1.08rem;font-weight:600;color:var(--white);margin-bottom:6px}
-.edu-inst{font-size:.9rem;color:var(--text2);margin-bottom:12px}
-.edu-gpa{font-family:'DM Mono',monospace;font-size:.72rem;color:var(--gold)}
-.edu-tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:16px}
-.edu-tag{padding:3px 10px;font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:1px;border:1px solid var(--border);color:var(--text2)}
-.cert-row{display:flex;justify-content:space-between;align-items:center;padding:9px 13px;background:rgba(255,255,255,.02);border:1px solid var(--border)}
-.cert-row+.cert-row{margin-top:6px}
-.cert-name{font-size:.88rem;color:var(--cream2)}
-.cert-yr{font-family:'DM Mono',monospace;font-size:.6rem;color:var(--gold)}
+/* ─── Education Grid ─────────────────────────────────── */
+.edu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  gap: clamp(12px, 2vw, 20px);
+}
+
+/* ─── Education Card ─────────────────────────────────── */
+.edu-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: clamp(20px, 4vw, 34px);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color .22s;
+}
+.edu-card:hover { border-color: var(--border2); }
+
+/* ─── Accent Bar ─────────────────────────────────────── */
+.edu-accent-bar {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 2px;
+  opacity: .6;
+  transition: opacity .22s;
+}
+.edu-card:hover .edu-accent-bar { opacity: 1; }
+
+/* ─── Typography ─────────────────────────────────────── */
+.edu-year {
+  font-family: 'DM Mono', monospace;
+  font-size: clamp(.58rem, 1.2vw, .64rem);
+  letter-spacing: 3px;
+  color: var(--gold-dim);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+.edu-degree {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(.95rem, 2.5vw, 1.08rem);
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+.edu-inst {
+  font-size: clamp(.8rem, 2vw, .9rem);
+  color: var(--text2);
+  margin-bottom: 12px;
+}
+.edu-gpa {
+  font-family: 'DM Mono', monospace;
+  font-size: clamp(.65rem, 1.5vw, .72rem);
+  color: var(--gold);
+}
+
+/* ─── Tags ───────────────────────────────────────────── */
+.edu-tags {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+.edu-tag {
+  padding: 3px 10px;
+  font-family: 'DM Mono', monospace;
+  font-size: clamp(.52rem, 1.2vw, .58rem);
+  letter-spacing: 1px;
+  border: 1px solid var(--border);
+  color: var(--text2);
+}
+
+/* ─── Cert / Awards Card (standalone) ───────────────── */
+.edu-card.cert-card,
+/* fallback for inline-styled card — target via section */
+#education > .edu-card {
+  margin: clamp(20px, 4vw, 40px) auto 0;
+  width: min(100%, 760px);
+  /* override the hard-coded pixel margins */
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-top: clamp(20px, 4vw, 40px) !important;
+}
+
+/* ─── Cert Rows ──────────────────────────────────────── */
+.cert-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: clamp(7px, 1.5vw, 9px) clamp(10px, 2vw, 13px);
+  background: rgba(255,255,255,.02);
+  border: 1px solid var(--border);
+}
+.cert-row + .cert-row { margin-top: 6px; }
+
+.cert-name {
+  font-size: clamp(.78rem, 2vw, .88rem);
+  color: var(--cream2);
+  flex: 1;
+}
+.cert-yr {
+  font-family: 'DM Mono', monospace;
+  font-size: clamp(.56rem, 1.2vw, .6rem);
+  color: var(--gold);
+  white-space: nowrap;
+}
+
+/* ─── Responsive Breakpoints ─────────────────────────── */
+
+/* Tablet: single column grid */
+@media (max-width: 768px) {
+  .edu-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Mobile: tighten cert rows */
+@media (max-width: 480px) {
+  .cert-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  .cert-yr {
+    align-self: flex-end;
+  }
+}
 
 /* SKILLS */
 .skills-layout{display:grid;grid-template-columns:1fr 1fr;gap:70px}
@@ -583,7 +696,7 @@ footer span{color:var(--gold)}
 
     
   </div>
-      <div class="edu-card reveal"style="margin-left: 400px;margin-right: 400px;margin-top: 40px">
+      <div class="edu-card cert-card reveal">
       <div class="edu-accent-bar" style="background:var(--gold-dim)"></div>
       <div class="edu-year">Contest Achievements</div>
       <div class="edu-degree">Awards &amp; Certifications</div>
@@ -702,10 +815,10 @@ footer span{color:var(--gold)}
     <div class="proj-card reveal" onclick="openModal('proj1')">
       <div class="proj-acc" style="--accent:var(--gold)"></div>
       <div class="proj-num">Project 01</div>
-      <div class="proj-name">Personalized Health Assistant &amp; Food Tracker</div>
+      <div class="proj-name">NutriScout</div>
       <div class="proj-desc">Full-stack nutrition tracking app with automated food logging, macro analysis, personalized diet recommendations, and real-time health monitoring powered by a fine-tuned LLM.</div>
       <div class="proj-tags"><span class="proj-tag">Node.js</span><span class="proj-tag">Express</span><span class="proj-tag">PostgreSQL</span><span class="proj-tag">Python</span><span class="proj-tag">Ollama LLM</span></div>
-      <a href="https://github.com/parthsarthi-dutt" target="_blank" class="proj-link" onclick="event.stopPropagation()">View on GitHub <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+      <a href="https://ui-blush-three.vercel.app/" target="_blank" class="proj-link" onclick="event.stopPropagation()">View Project <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
     </div>
     <div class="proj-card reveal" onclick="openModal('proj2')">
       <div class="proj-acc" style="--accent:var(--teal)"></div>
@@ -713,15 +826,15 @@ footer span{color:var(--gold)}
       <div class="proj-name">AI-Powered Virtual Assistant for GUI Automation</div>
       <div class="proj-desc">Vision-language desktop automation system combining Gemini LLM reasoning with OmniParser for accurate UI element detection. Features a DSU-based phrase detection algorithm for efficient element grouping.</div>
       <div class="proj-tags"><span class="proj-tag">Gemini API</span><span class="proj-tag">Tesseract OCR</span><span class="proj-tag">PyQt5</span><span class="proj-tag">Python</span><span class="proj-tag">OmniParser</span></div>
-      <a href="https://github.com/parthsarthi-dutt" target="_blank" class="proj-link" onclick="event.stopPropagation()">View on GitHub <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+      <a href="https://github.com/parthsarthi-dutt/Vision_Language_Autonomous_Desktop_Agent" target="_blank" class="proj-link" onclick="event.stopPropagation()">View on GitHub <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
     </div>
     <div class="proj-card reveal" onclick="openModal('proj3')">
       <div class="proj-acc" style="--accent:var(--cream2)"></div>
       <div class="proj-num">Project 03</div>
       <div class="proj-name">Admin Portal — Automated Seat Allotment (IIIT NR)</div>
-      <div class="proj-desc">Automated B.Tech seat allotment system with complex reservation logic, reducing a 5-day manual process to 1 minute. Built with Node.js, PostgreSQL, and OAuth-based authentication.</div>
+      <div class="proj-desc">Automated B.Tech seat allotment system with complex reservation logic, reducing a 5-day manual process to 1 minute. Built with Python, Node.js, PostgreSQL, and OAuth-based authentication.</div>
       <div class="proj-tags"><span class="proj-tag">Node.js</span><span class="proj-tag">Express.js</span><span class="proj-tag">PostgreSQL</span><span class="proj-tag">OAuth</span><span class="proj-tag">DSA</span></div>
-      <a href="https://github.com/parthsarthi-dutt" target="_blank" class="proj-link" onclick="event.stopPropagation()">View on GitHub <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+      
     </div>
     <div class="proj-card reveal" onclick="openModal('proj4')">
       <div class="proj-acc" style="--accent:#4db8a8"></div>
@@ -811,10 +924,10 @@ const M={
   icpc3:{title:'ICPC Online Preliminary 2025',sub:'Rank #1 at IIIT Naya Raipur',ey:'ICPC Achievement',stats:[{v:'4',k:'Problems Solved'},{v:'#1',k:'College Rank'},{v:'Cleared',k:'Status'}],desc:'Cleared the ICPC Asia Preliminary Round, solving 4 problems and emerging as the top-ranked participant from IIIT Naya Raipur — securing onsite slots at both Chennai and Kanpur.',hi:['Solved 4 problems in the ICPC Preliminary Round','Ranked #1 within IIIT Naya Raipur','Qualified for both Chennai and Kanpur regionals'],tags:['ICPC','Prelims','College Rank 1'],link:'https://icpc.global',lt:'About ICPC'},
   edu1:{title:'B.Tech Data Science & AI',sub:'IIIT Naya Raipur · 2023–2027',ey:'Education',stats:[{v:'9.32',k:'CGPA / 10'},{v:'DSAI',k:'Branch'},{v:'2027',k:'Graduating'}],desc:'B.Tech in Data Science and AI at IIIT Naya Raipur with a 9.32 CGPA — maintaining top academic performance while qualifying for two ICPC regionals and an Amazon ML School selection simultaneously.',hi:['CGPA 9.32/10 — strong academic performance','Curriculum includes ML, statistics, algorithms, and DS','2× ICPC Regional qualifier during studies','Amazon ML Summer School 2025 selection'],tags:['B.Tech','DSAI','IIIT Naya Raipur','Algorithms'],link:'https://iiitnr.ac.in',lt:'IIIT Naya Raipur'},
   edu2:{title:'Higher Secondary (XII)',sub:"St. Theresa's Convent · Karnal · 2023",ey:'Education',stats:[{v:'94.6%',k:'Board Score'},{v:'PCM',k:'Stream'},{v:'CS',k:'Elective'}],desc:"94.6% in Class XII from St. Theresa's Convent, Karnal, Haryana. PCM with Computer Science — the spark that started the programming journey.",hi:['94.6% in Class XII board examinations','PCM + Computer Science stream','Computer Science elective introduced C++ — rest is history','Strong math foundation shaped algorithmic thinking'],tags:['XII Board','94.6%','PCM','CS','Karnal'],link:'#',lt:''},
-  proj1:{title:'Health Assistant & Food Tracker',sub:'Node.js · PostgreSQL · Ollama LLM',ey:'Project',stats:[{v:'LLM',k:'Powered'},{v:'Full Stack',k:'Type'},{v:'Auto',k:'Nutrition'}],desc:'Full-stack nutrition tracking app with automated food logging, macro analysis, personalized diet recommendations, and real-time health charts powered by a fine-tuned LLM via Ollama.',hi:['Automated nutrition tracking — reduces manual inputs dramatically','Fine-tuned LLM (Ollama) for diet and medical queries','Real-time charts with adaptive insights for calories/health metrics','Report-analysis features generating customized diet lifestyle recommendations'],tags:['Node.js','Express','PostgreSQL','Python','Ollama','LLM'],link:'https://github.com/parthsarthi-dutt',lt:'View on GitHub'},
-  proj2:{title:'AI GUI Automation Assistant',sub:'Gemini API · OmniParser · Python',ey:'Project',stats:[{v:'Vision LLM',k:'Core'},{v:'DSU Algo',k:'Detection'},{v:'Desktop',k:'Platform'}],desc:'Intelligent vision-language desktop automation system combining Gemini LLM reasoning with OmniParser for accurate UI element detection. Features a custom DSU-based phrase detection algorithm.',hi:['Combines Gemini LLM with OmniParser for UI element detection','DSU-based phrase detection algorithm for efficient element grouping','Tesseract OCR integration for text recognition in UI','PyQt5 interface for cross-platform desktop automation'],tags:['Gemini API','Tesseract OCR','PyQt5','Python','OmniParser','Computer Vision'],link:'https://github.com/parthsarthi-dutt',lt:'View on GitHub'},
-  proj3:{title:'Automated Seat Allotment Portal',sub:'IIIT NR State Quota · Node.js',ey:'Project',stats:[{v:'5 days',k:'→ 1 minute'},{v:'OAuth',k:'Auth'},{v:'College',k:'Scale'}],desc:'Automated B.Tech seat allotment system for IIIT Naya Raipur with complex reservation logic, reducing a 5-day manual process to 1 minute. Full backend with OAuth authentication.',hi:['Reduced 5-day manual process to under 1 minute','Complex reservation and quota logic for state seats','Backend with Node.js, PostgreSQL, and OAuth-based auth','Handles intricate B.Tech seat allotment edge cases'],tags:['Node.js','Express.js','PostgreSQL','OAuth','Python','DSA'],link:'https://github.com/parthsarthi-dutt',lt:'View on GitHub'},
-  proj4:{title:'CP Template Library',sub:'C++17 · Open Source',ey:'Project',stats:[{v:'60+',k:'Algorithms'},{v:'120+',k:'Contests Used'},{v:'C++17',k:'Language'}],desc:'A comprehensive C++ template built from years of contest experience. Every algorithm is stress-tested in rated contests before inclusion. Used across ICPC, Codeforces, CodeChef, and Meta HC.',hi:['60+ algorithm implementations: DP, graphs, math, strings','Rare structures: Li Chao tree, sparse table, DSU by rank','Single-file template — zero contest setup friction','Updated after every new contest insight'],tags:['C++17','STL','PBDS','Template'],link:'https://github.com/parthsarthi-dutt',lt:'View on GitHub'},
+  proj1:{title:'NutriScout',sub:'Node.js · PostgreSQL · Ollama LLM',ey:'Project',stats:[{v:'LLM',k:'Powered'},{v:'Full Stack',k:'Type'},{v:'Auto',k:'Nutrition'}],desc:'Full-stack nutrition tracking app with automated food logging, macro analysis, personalized diet recommendations, and real-time health charts powered by a fine-tuned LLM via Ollama.',hi:['Automated nutrition tracking — reduces manual inputs dramatically','Fine-tuned LLM (Ollama) for diet and medical queries','Real-time charts with adaptive insights for calories/health metrics','Report-analysis features generating customized diet lifestyle recommendations'],tags:['Node.js','Express','PostgreSQL','Python','Ollama','LLM'],link:'https://ui-blush-three.vercel.app/',lt:'View Project'},
+  proj2:{title:'AI GUI Automation Assistant',sub:'Gemini API · OmniParser · Python',ey:'Project',stats:[{v:'Vision LLM',k:'Core'},{v:'DSU Algo',k:'Detection'},{v:'Desktop',k:'Platform'}],desc:'Intelligent vision-language desktop automation system combining Gemini LLM reasoning with OmniParser for accurate UI element detection. Features a custom DSU-based phrase detection algorithm.',hi:['Combines Gemini LLM with OmniParser for UI element detection','DSU-based phrase detection algorithm for efficient element grouping','Tesseract OCR integration for text recognition in UI','PyQt5 interface for cross-platform desktop automation'],tags:['Gemini API','Tesseract OCR','PyQt5','Python','OmniParser','Computer Vision'],link:'https://github.com/parthsarthi-dutt/Health-Assistant',lt:'View on GitHub'},
+  proj3:{title:'Automated Seat Allotment Portal',sub:'IIIT NR State Quota · Node.js',ey:'Project',stats:[{v:'5 days',k:'→ 1 minute'},{v:'OAuth',k:'Auth'},{v:'College',k:'Scale'}],desc:'Automated B.Tech seat allotment system for IIIT Naya Raipur with complex reservation logic, reducing a 5-day manual process to 1 minute. Full backend with OAuth authentication.',hi:['Reduced 5-day manual process to under 1 minute','Complex reservation and quota logic for state seats','Backend with Node.js, PostgreSQL, and OAuth-based auth','Handles intricate B.Tech seat allotment edge cases'],tags:['Node.js','Express.js','PostgreSQL','OAuth','Python','DSA']},
+  proj4:{title:'CP Template Library',sub:'C++17 · Open Source',ey:'Project',stats:[{v:'60+',k:'Algorithms'},{v:'120+',k:'Contests Used'},{v:'C++17',k:'Language'}],desc:'A comprehensive C++ template built from years of contest experience. Every algorithm is stress-tested in rated contests before inclusion. Used across ICPC, Codeforces, CodeChef, and Meta HC.',hi:['60+ algorithm implementations: DP, graphs, math, strings','Single-file template — zero contest setup friction','Updated after every new contest insight'],tags:['C++17','STL','PBDS','Template'],link:'https://github.com/parthsarthi-dutt',lt:'View on GitHub'},
 };
 
 function openModal(key){
