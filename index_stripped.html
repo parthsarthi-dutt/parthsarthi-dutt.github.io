@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parthsarthi Dutt — Competitive Programmer</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+:root{
+  --bg:#0f0e0c;--bg2:#141210;--bg3:#1a1814;--card:#181614;--card2:#1e1c18;
+  --gold:#c9a84c;--gold-lt:#e2c47a;--gold-dim:#8a6e2f;
+  --cream:#f0e8d8;--cream2:#d4c9b4;
+  --text:#b8aa96;--text2:#7a6e5c;--white:#f5efe4;
+  --border:rgba(201,168,76,.12);--border2:rgba(201,168,76,.22);
+  --teal:#2a8c7c;--slate:#5b7fa6;--red:#c0392b;
+}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:16px;overflow-x:hidden}
+::selection{background:var(--gold);color:var(--bg)}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-thumb{background:var(--gold-dim)}
+
+/* ─── ORIGINAL STYLES ─────────────────────────────────────────────────────── */
+
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:500;padding:0 80px;height:70px;display:flex;align-items:center;justify-content:space-between;background:rgba(15,14,12,.93);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--cream);letter-spacing:.3px}
+.nav-logo span{color:var(--gold)}
+.nav-links{display:flex;gap:32px}
+.nav-links a{font-family:'DM Mono',monospace;font-size:.68rem;color:var(--text2);text-decoration:none;letter-spacing:2px;text-transform:uppercase;transition:color .22s}
+.nav-links a:hover,.nav-links a.active{color:var(--gold)}
+.nav-cta{padding:9px 22px;font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:2px;text-transform:uppercase;background:var(--gold);color:var(--bg);text-decoration:none;font-weight:500;transition:background .22s;white-space:nowrap}
+.nav-cta:hover{background:var(--gold-lt)}
+
+/* SECTIONS */
+section{padding:120px 80px;position:relative;z-index:1}
+section.alt{background:var(--bg2)}
+.eyebrow{font-family:'DM Mono',monospace;font-size:.7rem;color:var(--gold-dim);letter-spacing:4px;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:14px}
+.eyebrow::before{content:'';display:block;width:32px;height:1px;background:var(--gold-dim)}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,3.8vw,3rem);font-weight:700;color:var(--white);line-height:1.1;margin-bottom:14px}
+.sec-title em{color:var(--gold);font-style:italic}
+.sec-title1{font-family:'Playfair Display',serif;font-size: clamp(1rem, 2.5vw, 2rem);font-weight:700;color:var(--white);line-height:1.1;margin-bottom:14px}
+.sec-title1 em{color:var(--gold);font-style:italic}
+.sec-sub{font-size:.95rem;color:var(--text2);line-height:1.8;max-width:520px}
+.sec-header{margin-bottom:72px}
+
+/* HERO */
+#hero{min-height:100vh;display:grid;grid-template-columns:1fr 390px;align-items:center;gap:80px;padding-top:70px;position:relative;overflow:hidden}
+.hero-cartoon-bg{position:absolute;right:360px;top:50%;transform:translateY(-50%);width:1100px;height:1400px;opacity:0.07;z-index:0;pointer-events:none;overflow:hidden;border-radius:20px}
+.hero-cartoon-bg img{width:100%;height:100%;object-fit:cover;filter:grayscale(100%) contrast(1.2)}
+.hero-content{position:relative;z-index:1}
+.hero-tag{font-family:'DM Mono',monospace;font-size:.7rem;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:28px;opacity:0;animation:fadeUp .5s .1s ease forwards}
+.hero-name{font-family:'Playfair Display',serif;font-size:clamp(3rem,6vw,4.8rem);font-weight:900;line-height:.95;color:var(--white);opacity:0;animation:fadeUp .5s .2s ease forwards;margin-bottom:8px}
+.hero-name em{display:block;color:var(--gold);font-style:italic;font-weight:400;font-size:clamp(1.5rem,3vw,2.5rem);margin-top:6px}
+.hero-desc{font-size:.98rem;color:var(--text);line-height:1.9;max-width:540px;margin:30px 0 40px;opacity:0;animation:fadeUp .5s .3s ease forwards}
+.hero-desc strong{color:var(--cream2);font-weight:500}
+.hero-stats{display:flex;gap:0;margin-bottom:44px;border:1px solid var(--border);width:fit-content;opacity:0;animation:fadeUp .5s .35s ease forwards}
+.hstat{padding:18px 28px}
+.hstat+.hstat{border-left:1px solid var(--border)}
+.hstat-val{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--gold);line-height:1}
+.hstat-key{font-family:'DM Mono',monospace;font-size:.58rem;color:var(--text2);letter-spacing:2px;text-transform:uppercase;margin-top:5px}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;opacity:0;animation:fadeUp .5s .4s ease forwards}
+.btn{padding:13px 32px;font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:2px;text-transform:uppercase;text-decoration:none;cursor:pointer;border:none;transition:all .22s;display:inline-block}
+.btn-primary{background:var(--gold);color:var(--bg);font-weight:500}
+.btn-primary:hover{background:var(--gold-lt)}
+.btn-ghost{background:transparent;color:var(--cream2);border:1px solid var(--border2)}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold);background:rgba(201,168,76,.05)}
+
+/* HERO CARD */
+.hero-right{opacity:0;animation:fadeUp .5s .22s ease forwards;position:relative;z-index:1}
+.profile-card{background:var(--card);border:1px solid var(--border2);padding:44px 38px;text-align:center;position:relative;overflow:hidden}
+.profile-card::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:60%;height:1px;background:var(--gold);opacity:.5}
+.card-cartoon-watermark{position:absolute;bottom:-10px;right:-10px;width:160px;height:160px;opacity:0.05;pointer-events:none;border-radius:8px;overflow:hidden}
+.card-cartoon-watermark img{width:100%;height:100%;object-fit:cover}
+.avatar-wrap{width:150px;height:150px;margin:0 auto 26px;position:relative;cursor:pointer}
+.avatar-ring{position:absolute;inset:-5px;border-radius:50%;border:1px solid var(--border2)}
+.avatar-placeholder{width:150px;height:150px;border-radius:50%;overflow:hidden;border:2px solid var(--border2);display:block}
+.avatar-placeholder img{width:100%;height:100%;object-fit:cover;display:block}
+.avatar-img{width:150px;height:150px;border-radius:50%;object-fit:cover;display:none;border:2px solid var(--border2)}
+.avatar-wrap:hover .avatar-edit-hint{opacity:1}
+#avatar-input{display:none}
+.card-name{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--white);margin-bottom:5px}
+.card-role{font-family:'DM Mono',monospace;font-size:.62rem;color:var(--gold-dim);letter-spacing:2px;text-transform:uppercase;margin-bottom:22px}
+.card-badges{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin-bottom:24px}
+.cbadge{padding:4px 11px;font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:1px;border:1px solid}
+.cb-gold{color:var(--gold);border-color:rgba(201,168,76,.35);background:rgba(201,168,76,.05)}
+.cb-cream{color:var(--cream2);border-color:rgba(212,201,180,.25);background:rgba(212,201,180,.04)}
+.cb-teal{color:#4db8a8;border-color:rgba(42,140,124,.35);background:rgba(42,140,124,.05)}
+.cb-slate{color:#7faed4;border-color:rgba(91,127,166,.35);background:rgba(91,127,166,.05)}
+.cb-amazon{color:#ff9900;border-color:rgba(255,153,0,.35);background:rgba(255,153,0,.05)}
+.card-divider{height:1px;background:var(--border);margin:0 0 20px}
+.card-socials{display:flex;gap:10px;justify-content:center}
+.csocial{width:36px;height:36px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text2);text-decoration:none;transition:all .22s}
+.csocial:hover{border-color:var(--gold);color:var(--gold);background:rgba(201,168,76,.06)}
+
+
+/* ─── RESPONSIVE BREAKPOINTS ──────────────────────────────────────────────── */
+
+/* ── Tablet landscape: ≤1100px ── */
+@media (max-width:1100px){
+  nav{padding:0 40px}
+  section{padding:100px 40px}
+  #hero{grid-template-columns:1fr 340px;gap:48px;padding-left:40px;padding-right:40px}
+  .hero-cartoon-bg{right:300px;width:900px}
+}
+
+/* ── Tablet portrait: ≤900px ── */
+@media (max-width:900px){
+  /* Nav: hide links, keep logo + cta */
+  nav{padding:0 28px}
+  .nav-links{display:none}
+
+  /* Hero: stack vertically, card first on mobile */
+  #hero{
+    grid-template-columns:1fr;
+    grid-template-rows:auto auto;
+    gap:48px;
+    padding:100px 28px 72px;
+    text-align:center;
+  }
+  .hero-content{order:2}
+  .hero-right{order:1}
+  .hero-cartoon-bg{display:none}
+
+  .hero-desc{max-width:100%;margin-left:auto;margin-right:auto}
+  .hero-stats{margin-left:auto;margin-right:auto}
+  .hero-btns{justify-content:center}
+
+  .sec-sub{max-width:100%}
+  section{padding:80px 28px}
+  .sec-header{margin-bottom:48px}
+}
+
+/* ── Mobile large: ≤600px ── */
+@media (max-width:600px){
+  nav{padding:0 20px;height:60px}
+  .nav-cta{padding:7px 16px;font-size:.62rem;letter-spacing:1.5px}
+
+  section{padding:64px 20px}
+
+  #hero{padding:80px 20px 60px;gap:36px}
+
+  .hero-name{font-size:clamp(2.4rem,10vw,3.4rem)}
+  .hero-name em{font-size:clamp(1.2rem,5vw,1.8rem)}
+  .hero-tag{font-size:.65rem}
+  .hero-desc{font-size:.92rem}
+
+  /* Stats: wrap on very small screens */
+  .hero-stats{flex-wrap:wrap;width:100%;justify-content:center}
+  .hstat{padding:14px 20px;flex:1 1 auto;min-width:100px}
+  .hstat+.hstat{border-left:none;border-top:1px solid var(--border)}
+  .hstat-val{font-size:1.6rem}
+
+  .btn{padding:11px 24px;font-size:.65rem}
+  .hero-btns{flex-direction:column;align-items:center;width:100%}
+  .btn{width:100%;text-align:center}
+
+  /* Profile card */
+  .profile-card{padding:32px 24px}
+  .avatar-wrap,.avatar-placeholder,.avatar-img{width:120px;height:120px}
+  .avatar-ring{inset:-4px}
+
+  .sec-title{font-size:clamp(1.6rem,6vw,2.4rem)}
+  .sec-title1{font-size:clamp(1rem,4vw,1.6rem)}
+  .eyebrow{font-size:.65rem;letter-spacing:3px}
+}
+
+/* ── Mobile small: ≤380px ── */
+@media (max-width:380px){
+  .nav-logo{font-size:1rem}
+  .nav-cta{display:none} /* hide CTA button on very small screens to avoid overflow */
+  #hero{padding:72px 16px 52px}
+  section{padding:52px 16px}
+  .profile-card{padding:28px 16px}
+  .card-badges{gap:5px}
+  .cbadge{font-size:.55rem;padding:3px 8px}
+}
+
+/* ── Hamburger menu (shown ≤900px) ──────────────────────────────────────────
+   Add this HTML to your nav:
+     <button class="nav-hamburger" aria-label="Menu" onclick="this.classList.toggle('open');document.querySelector('.nav-drawer').classList.toggle('open')">
+       <span></span><span></span><span></span>
+     </button>
+     <div class="nav-drawer">
+       <!-- duplicate your .nav-links anchors here -->
+     </div>
+   ───────────────────────────────────────────────────────────────────────── */
+.nav-hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.nav-hamburger span{display:block;width:22px;height:1.5px;background:var(--cream);transition:all .22s}
+.nav-hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.nav-hamburger.open span:nth-child(2){opacity:0}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+
+.nav-drawer{position:fixed;top:60px;left:0;width:100%;background:rgba(15,14,12,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;flex-direction:column;gap:0;max-height:0;overflow:hidden;transition:max-height .3s ease}
+.nav-drawer.open{max-height:320px}
+.nav-drawer a{font-family:'DM Mono',monospace;font-size:.72rem;color:var(--text2);text-decoration:none;letter-spacing:2px;text-transform:uppercase;padding:16px 24px;border-bottom:1px solid var(--border);transition:color .22s}
+.nav-drawer a:hover{color:var(--gold)}
+
+@media (max-width:900px){
+  .nav-hamburger{display:flex}
+  .nav-drawer{top:60px}
+}
+@media (min-width:901px){
+  .nav-hamburger{display:none}
+  .nav-drawer{display:none}
+}
+
+/* PROFILES */
+.profiles-wrap{display:flex;flex-direction:column;gap:2px}
+.pf-row{display:grid;gap:2px;background:var(--border);border:1px solid var(--border)}
+.pf-row-3{grid-template-columns:repeat(3,1fr)}
+.pf-card{background:var(--card);padding:30px 26px;position:relative;cursor:pointer;transition:background .22s}
+.pf-card:hover{background:var(--card2)}
+.pf-logo {
+  position: absolute;
+  top: 50px;    /* Decreased from 25px to move it up */
+  right: 20px;
+  width: 28px;
+  height: 40px;
+  object-fit: contain;
+  pointer-events: none;
+  z-index: 5;   /* Ensures it stays above the top-bar if they overlap */
+}
+.pf-top-bar{height:2px;margin-bottom:22px;opacity:.65;transition:opacity .22s}
+.pf-card:hover .pf-top-bar{opacity:1}
+.pf-platform{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:3px;color:var(--text2);text-transform:uppercase;margin-bottom:4px}
+.pf-handle{font-size:.88rem;font-weight:500;color:var(--cream2);margin-bottom:14px}
+.pf-rating{font-family:'Playfair Display',serif;font-size:2.3rem;font-weight:700;line-height:1;margin-bottom:4px}
+.pf-rank{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--text2);margin-bottom:18px}
+.pf-divider{height:1px;background:var(--border);margin-bottom:16px}
+.pf-stats{display:grid;grid-template-columns:repeat(3,1fr)}
+.pf-stat{text-align:center;padding:0 6px}
+.pf-stat+.pf-stat{border-left:1px solid var(--border)}
+.pf-sv{font-family:'Playfair Display',serif;font-size:.98rem;font-weight:600;color:var(--white)}
+.pf-sk{font-family:'DM Mono',monospace;font-size:.54rem;color:var(--text2);letter-spacing:1px;margin-top:2px;text-transform:uppercase}
+/* External link button - relocated to bottom */
+.pf-ext-link{display:flex;align-items:center;gap:8px;margin-top:16px;padding:8px 14px;border:1px solid var(--border);color:var(--text2);text-decoration:none;font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:1.5px;text-transform:uppercase;transition:all .22s;width:fit-content}
+.pf-ext-link:hover{border-color:var(--gold);color:var(--gold);background:rgba(201,168,76,.05)}
+.pf-ext-link svg{flex-shrink:0}
+
+/* EDUCATION */
+/* ─── Education Grid ─────────────────────────────────── */
+.edu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  gap: clamp(12px, 2vw, 20px);
+}
+
+/* ─── Education Card ─────────────────────────────────── */
+.edu-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: clamp(20px, 4vw, 34px);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color .22s;
+}
+.edu-card:hover { border-color: var(--border2); }
+
+/* ─── Accent Bar ─────────────────────────────────────── */
+.edu-accent-bar {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 2px;
+  opacity: .6;
+  transition: opacity .22s;
+}
+.edu-card:hover .edu-accent-bar { opacity: 1; }
+
+/* ─── Typography ─────────────────────────────────────── */
+.edu-year {
+  font-family: 'DM Mono', monospace;
+  font-size: clamp(.58rem, 1.2vw, .64rem);
+  letter-spacing: 3px;
+  color: var(--gold-dim);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+.edu-degree {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(.95rem, 2.5vw, 1.08rem);
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+.edu-inst {
+  font-size: clamp(.8rem, 2vw, .9rem);
+  color: var(--text2);
+  margin-bottom: 12px;
+}
+.edu-gpa {
+  font-family: 'DM Mono', monospace;
+  font-size: clamp(.65rem, 1.5vw, .72rem);
+  color: var(--gold);
+}
+
+/* ─── Tags ───────────────────────────────────────────── */
+.edu-tags {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+.edu-tag {
+  padding: 3px 10px;
+  font-family: 'DM Mono', monospace;
+  font-size: clamp(.52rem, 1.2vw, .58rem);
+  letter-spacing: 1px;
+  border: 1px solid var(--border);
+  color: var(--text2);
+}
+
+/* ─── Cert / Awards Card (standalone) ───────────────── */
+.edu-card.cert-card,
+/* fallback for inline-styled card — target via section */
+#education > .edu-card {
+  margin: clamp(20px, 4vw, 40px) auto 0;
+  width: min(100%, 760px);
+  /* override the hard-coded pixel margins */
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-top: clamp(20px, 4vw, 40px) !important;
+}
+
+/* ─── Cert Rows ──────────────────────────────────────── */
+.cert-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: clamp(7px, 1.5vw, 9px) clamp(10px, 2vw, 13px);
+  background: rgba(255,255,255,.02);
+  border: 1px solid var(--border);
+}
+.cert-row + .cert-row { margin-top: 6px; }
+
+.cert-name {
+  font-size: clamp(.78rem, 2vw, .88rem);
+  color: var(--cream2);
+  flex: 1;
+}
+.cert-yr {
+  font-family: 'DM Mono', monospace;
+  font-size: clamp(.56rem, 1.2vw, .6rem);
+  color: var(--gold);
+  white-space: nowrap;
+}
+
+/* ─── Responsive Breakpoints ─────────────────────────── */
+
+/* Tablet: single column grid */
+@media (max-width: 768px) {
+  .edu-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Mobile: tighten cert rows */
+@media (max-width: 480px) {
+  .cert-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  .cert-yr {
+    align-self: flex-end;
+  }
+}
+
+/* SKILLS */
+.skills-layout{display:grid;grid-template-columns:1fr 1fr;gap:70px}
+.sg-title{font-family:'DM Mono',monospace;font-size:.64rem;letter-spacing:3px;color:var(--gold-dim);text-transform:uppercase;margin-bottom:22px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.skill-row{margin-bottom:17px}
+.skill-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:7px}
+.skill-name{font-size:.92rem;font-weight:400;color:var(--cream2)}
+.skill-lvl{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:2px;color:var(--text2);text-transform:uppercase}
+.skill-bar{height:2px;background:rgba(255,255,255,.05)}
+.skill-fill{height:100%;background:linear-gradient(90deg,var(--gold-dim),var(--gold));width:0;transition:width 1.3s cubic-bezier(.1,0,.2,1) .1s}
+.skill-fill.go{width:var(--w)}
+.tools-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.tool-pill{padding:10px 12px;border:1px solid var(--border);font-family:'DM Mono',monospace;font-size:.66rem;letter-spacing:.5px;color:var(--text2);text-align:center;transition:all .2s}
+.tool-pill:hover{border-color:var(--border2);color:var(--cream2)}
+.interest-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.interest-card{padding:16px;background:var(--card);border:1px solid var(--border)}
+.int-label{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:2px;color:var(--gold-dim);text-transform:uppercase;margin-bottom:6px}
+.int-text{font-size:.85rem;color:var(--text);line-height:1.5}
+
+/* EXPERIENCE */
+.exp-grid{display:flex;flex-direction:column;gap:18px}
+.exp-card{background:var(--card);border:1px solid var(--border);padding:30px 34px;position:relative;overflow:hidden;transition:border-color .22s}
+.exp-card:hover{border-color:var(--border2)}
+.exp-accent{position:absolute;left:0;top:0;bottom:0;width:3px}
+.exp-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;flex-wrap:wrap;gap:10px}
+.exp-title{font-family:'Playfair Display',serif;font-size:1.08rem;font-weight:600;color:var(--white)}
+.exp-company{font-family:'DM Mono',monospace;font-size:.68rem;color:var(--gold);letter-spacing:1px;margin-top:3px}
+.exp-meta{text-align:right}
+.exp-period{font-family:'DM Mono',monospace;font-size:.62rem;color:var(--text2);letter-spacing:1px}
+.exp-type{font-family:'DM Mono',monospace;font-size:.6rem;color:var(--text2);margin-top:3px}
+.exp-bullets{margin-top:14px;list-style:none;display:flex;flex-direction:column;gap:8px}
+.exp-bullets li{display:flex;align-items:flex-start;gap:12px;font-size:.88rem;color:var(--text);line-height:1.65}
+.exp-bullets li::before{content:'—';color:var(--gold-dim);flex-shrink:0}
+.exp-tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:14px}
+.exp-tag{padding:3px 10px;font-family:'DM Mono',monospace;font-size:.58rem;border:1px solid var(--border);color:var(--text2)}
+
+/* ACHIEVEMENTS */
+.achieve-layout{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.timeline{position:relative;padding-left:30px}
+.tl-line{position:absolute;left:7px;top:10px;bottom:0;width:1px;background:linear-gradient(180deg,var(--gold-dim),transparent);opacity:.4}
+.tl-item{position:relative;margin-bottom:20px;background:var(--card);border:1px solid var(--border);padding:22px 24px;cursor:pointer;transition:border-color .22s}
+.tl-item:hover{border-color:var(--border2)}
+.tl-dot{position:absolute;left:-26px;top:24px;width:10px;height:10px;border-radius:50%;background:var(--bg);border:1.5px solid var(--gold-dim);transition:border-color .22s}
+.tl-item:hover .tl-dot{border-color:var(--gold)}
+.tl-connector{position:absolute;left:-16px;top:28px;width:16px;height:1px;background:var(--border2)}
+.tl-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap}
+.tl-year{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:2px;color:var(--text2);text-transform:uppercase}
+.tl-badge{padding:2px 9px;font-family:'DM Mono',monospace;font-size:.57rem;letter-spacing:1px;border:1px solid}
+.tb-gold{color:var(--gold);border-color:rgba(201,168,76,.4)}
+.tb-teal{color:#4db8a8;border-color:rgba(42,140,124,.4)}
+.tb-slate{color:#7faed4;border-color:rgba(91,127,166,.4)}
+.tb-cream{color:var(--cream2);border-color:var(--border2)}
+.tb-amazon{color:#ff9900;border-color:rgba(255,153,0,.4)}
+.tl-title{font-family:'Playfair Display',serif;font-size:.98rem;font-weight:600;color:var(--white);margin-bottom:6px}
+.tl-desc{font-size:.85rem;color:var(--text);line-height:1.65}
+.tl-hint{font-family:'DM Mono',monospace;font-size:.57rem;color:var(--text2);letter-spacing:1px;margin-top:10px;opacity:0;transition:opacity .2s}
+.tl-item:hover .tl-hint{opacity:1}
+
+/* GALLERY */
+.icpc-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 550px; /* Adjust this: 400px to 500px is usually the "sweet spot" */
+  margin: 0 auto;    /* Centers the gallery if it's smaller than the screen */
+}
+.gallery-main{margin-top: 60px;width:100%;aspect-ratio:16/10;overflow:hidden;border:1px solid var(--border);position:relative;background:var(--card);cursor:pointer}
+.gallery-main img.main-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Shows the whole photo/certificate */
+    background: var(--card); /* Fills gaps with your card color */
+}
+.gallery-main:hover img.main-img{transform:scale(1.00)}
+.gallery-ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--text2);font-family:'DM Mono',monospace;font-size:.66rem;letter-spacing:2px}
+.gallery-ph svg{opacity:.18}
+.gallery-overlay{position:absolute;bottom:0;left:0;right:0;padding:16px;background:linear-gradient(0deg,rgba(15,14,12,.95),transparent)}
+.go-tag{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:2px;color:var(--gold);display:block;margin-bottom:3px;text-transform:uppercase}
+.go-caption{font-size:.85rem;color:var(--cream2)}
+.gallery-thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.gthumb{aspect-ratio:1;overflow:hidden;border:1px solid var(--border);cursor:pointer;position:relative;background:var(--card);transition:border-color .22s}
+.gthumb.active,.gthumb:hover{border-color:var(--border2)}
+.gthumb.active{border-color:var(--gold)}
+.gthumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
+.gthumb:hover img{transform:scale(1.08)}
+.gthumb-ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:.54rem;color:var(--border2);letter-spacing:1px;text-align:center;padding:6px;gap:2px}
+.gallery-note{font-family:'DM Mono',monospace;font-size:.57rem;color:var(--text2);letter-spacing:1px;text-align:center;margin-top:2px}
+
+/* PROJECTS */
+.projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.proj-card{background:var(--card);border:1px solid var(--border);padding:30px;cursor:pointer;transition:border-color .22s,background .22s;position:relative;overflow:hidden}
+.proj-card:hover{border-color:var(--border2);background:var(--card2)}
+.proj-acc{height:2px;background:var(--accent,var(--gold));width:0;margin-bottom:20px;transition:width .35s;opacity:.7}
+.proj-card:hover .proj-acc{width:100%}
+.proj-num{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:2px;color:var(--text2);margin-bottom:12px;text-transform:uppercase}
+.proj-name{font-family:'Playfair Display',serif;font-size:1.08rem;font-weight:600;color:var(--white);margin-bottom:10px}
+.proj-desc{font-size:.87rem;color:var(--text);line-height:1.75;margin-bottom:18px}
+.proj-tags{display:flex;gap:7px;flex-wrap:wrap}
+.proj-tag{padding:3px 10px;font-family:'DM Mono',monospace;font-size:.58rem;border:1px solid var(--border);color:var(--text2)}
+/* Project external link - bottom positioned */
+.proj-link{display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding:7px 14px;border:1px solid var(--border);color:var(--text2);text-decoration:none;font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:1.5px;transition:all .22s;text-transform:uppercase}
+.proj-link:hover{border-color:var(--gold);color:var(--gold)}
+
+/* CONTACT */
+#contact{text-align:center}
+.contact-wrap{max-width:660px;margin:0 auto}
+.contact-intro{font-size:.98rem;color:var(--text);line-height:1.9;margin-bottom:50px}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:36px}
+.clink{display:flex;align-items:center;gap:16px;padding:20px 22px;text-decoration:none;background:var(--card);border:1px solid var(--border);color:var(--text);transition:all .22s;text-align:left}
+.clink:hover{border-color:var(--border2);background:var(--card2)}
+.clink-icon{flex-shrink:0;width:20px;color:var(--gold-dim);display:flex;align-items:center}
+.clink:hover .clink-icon{color:var(--gold)}
+.clink-label{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:2px;color:var(--text2);display:block;margin-bottom:3px;text-transform:uppercase}
+.clink-val{font-size:.9rem;font-weight:500;color:var(--cream2)}
+
+/* FOOTER */
+footer{padding:28px 80px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1;background:var(--bg)}
+footer p{font-family:'DM Mono',monospace;font-size:.6rem;color:var(--text2);letter-spacing:1.5px}
+footer span{color:var(--gold)}
+
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:2000;align-items:center;justify-content:center;backdrop-filter:blur(12px);padding:24px}
+.modal-overlay.open{display:flex}
+.modal{background:var(--bg2);border:1px solid var(--border2);max-width:650px;width:100%;max-height:90vh;overflow-y:auto;position:relative;animation:modalIn .26s ease}
+@keyframes modalIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.modal-gold-line{height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.5}
+.modal-close{position:absolute;top:17px;right:19px;background:none;border:none;color:var(--text2);font-size:1.2rem;cursor:pointer;font-family:'DM Mono',monospace;transition:color .2s;z-index:1}
+.modal-close:hover{color:var(--white)}
+.modal-head{padding:34px 38px 22px}
+.modal-eyebrow{font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:3px;color:var(--gold-dim);margin-bottom:10px;text-transform:uppercase}
+.modal-title{font-family:'Playfair Display',serif;font-size:1.45rem;font-weight:700;color:var(--white);margin-bottom:5px}
+.modal-sub{font-size:.88rem;color:var(--text2)}
+.modal-divider{height:1px;background:var(--border);margin:0 38px}
+.modal-body{padding:26px 38px 34px}
+.modal-stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:24px}
+.mstat{background:var(--card);border:1px solid var(--border);padding:15px;text-align:center}
+.mstat-val{font-family:'Playfair Display',serif;font-size:1.45rem;font-weight:700;color:var(--gold)}
+.mstat-key{font-family:'DM Mono',monospace;font-size:.57rem;color:var(--text2);letter-spacing:1.5px;margin-top:4px;text-transform:uppercase}
+.modal-label{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:2px;color:var(--text2);margin-bottom:9px;text-transform:uppercase}
+.modal-desc{font-size:.9rem;color:var(--text);line-height:1.85;margin-bottom:20px}
+.modal-list{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
+.modal-list li{display:flex;align-items:flex-start;gap:12px;font-size:.87rem;color:var(--text);line-height:1.65}
+.modal-list li::before{content:'—';color:var(--gold-dim);flex-shrink:0;margin-top:1px}
+.modal-tags{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:20px}
+.modal-tag{padding:4px 11px;font-family:'DM Mono',monospace;font-size:.6rem;border:1px solid var(--border);color:var(--text2)}
+.modal-link{display:inline-flex;align-items:center;gap:10px;padding:11px 24px;border:1px solid var(--border2);color:var(--cream2);text-decoration:none;font-family:'DM Mono',monospace;font-size:.66rem;letter-spacing:1.5px;transition:all .22s;text-transform:uppercase}
+.modal-link:hover{background:rgba(201,168,76,.07);border-color:var(--gold);color:var(--gold)}
+
+/* LIGHTBOX */
+#lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:3000;align-items:center;justify-content:center;backdrop-filter:blur(6px)}
+#lightbox.open{display:flex}
+#lb-img{max-width:90vw;max-height:90vh;object-fit:contain;border:1px solid var(--border)}
+#lb-close{position:absolute;top:22px;right:28px;font-family:'DM Mono',monospace;font-size:1.2rem;color:var(--text2);cursor:pointer;background:none;border:none;transition:color .2s}
+#lb-close:hover{color:var(--white)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .65s ease,transform .65s ease}
+.reveal.in{opacity:1;transform:none}
+
+@media(max-width:1100px){.pf-row-3{grid-template-columns:1fr 1fr}#hero{grid-template-columns:1fr}.hero-right{display:none}.achieve-layout,.skills-layout,.edu-grid,.projects-grid{grid-template-columns:1fr}}
+@media(max-width:768px){nav{padding:0 22px}.nav-links{display:none}section{padding:80px 22px}footer{padding:22px;flex-direction:column;gap:10px;text-align:center}.pf-row-3{grid-template-columns:1fr}.contact-grid{grid-template-columns:1fr}.modal-head{padding:26px 22px 18px}.modal-body{padding:18px 22px 28px}.modal-divider{margin:0 22px}}
+</style>
+</head>
+<body>
+
+<div id="lightbox">
+  <button id="lb-close" onclick="closeLB()">✕</button>
+  <img id="lb-img" src="" alt="">
+</div>
+
+<div class="modal-overlay" id="modal-overlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal" id="modal">
+    <div class="modal-gold-line"></div>
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-head" id="modal-head"></div>
+    <div class="modal-divider"></div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<nav>
+  <div class="nav-logo">Parthsarthi <span>Dutt</span></div>
+  <div class="nav-links">
+    <a href="#profiles">Profiles</a>
+    <a href="#experience">Experience</a>
+    <a href="#education">Education</a>
+    <a href="#skills">Skills</a>
+    <a href="#icpc">Achievements</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="mailto:parthsarthiduttofficial@gmail.com" class="nav-cta">Hire Me</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero" style="padding-left:80px;padding-right:80px">
+  <!-- Cartoon as subtle background element -->
+  <div class="hero-cartoon-bg">
+<!-- LINE 568 STRIPPED (405087 chars) -->
+  </div>
+  <div class="hero-content">
+    <div class="hero-tag">ICPC Regionalist · IIIT Naya Raipur · Karnal,Haryana</div>
+    <h1 class="hero-name">Parthsarthi<em>Dutt.</em></h1>
+    <p class="hero-desc">
+      Fast learner. Problem solver. Algorithm enthusiast who turned a JEE setback into a
+      <strong>9.32 CGPA at IIIT Naya Raipur</strong> — all while qualifying for ICPC regionals,
+      reaching <strong>Codeforces Expert</strong>, and solving over <strong>1500 problems</strong> across all major platforms.
+      Passionate about backend engineering, AI systems, and the elegance of a well-crafted algorithm.
+    </p>
+    <div class="hero-stats">
+      <div class="hstat"><div class="hstat-val">1500+</div><div class="hstat-key">Problems Solved</div></div>
+      <div class="hstat"><div class="hstat-val">120+</div><div class="hstat-key">Contests</div></div>
+      <div class="hstat"><div class="hstat-val">1649</div><div class="hstat-key">CF Rating</div></div>
+      <div class="hstat"><div class="hstat-val">9.32</div><div class="hstat-key">CGPA</div></div>
+    </div>
+    <div class="hero-btns">
+      <a href="#profiles" class="btn btn-primary">View Profiles</a>
+      <a href="#icpc" class="btn btn-ghost">ICPC Journey</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="profile-card">
+      <div class="avatar-wrap">
+        <div class="avatar-ring"></div>
+        <div class="avatar-placeholder" id="avatar-ph">
+<!-- LINE 595 STRIPPED (405192 chars) -->
+        </div>
+        
+        
+      </div>
+      <input type="file" id="avatar-input" accept="image/*">
+      <div class="card-cartoon-watermark">
+<!-- LINE 602 STRIPPED (405091 chars) -->
+      </div>
+      <div class="card-name">Parthsarthi Dutt</div>
+      <div class="card-role">Competitive Programmer · DSAI</div>
+      <div class="card-badges">
+        <span class="cbadge cb-gold">2× ICPC Regionalist</span>
+        <span class="cbadge cb-cream">CF Expert</span>
+        <span class="cbadge cb-teal">LC Knight</span>
+        <span class="cbadge cb-slate">CC ★★★★</span>
+     
+      </div>
+      <div class="card-divider"></div>
+      <div class="card-socials">
+        <a href="https://github.com/parthsarthi-dutt" target="_blank" class="csocial" title="GitHub"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></a>
+        <a href="https://www.linkedin.com/in/parthsarthi-dutt-b32886189/" target="_blank" class="csocial" title="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+        <a href="https://codeforces.com/profile/parthsarthidutt_45" target="_blank" class="csocial" title="Codeforces"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><rect x="0" y="10" width="6" height="14" rx="1"/><rect x="9" y="4" width="6" height="20" rx="1"/><rect x="18" y="7" width="6" height="17" rx="1"/></svg></a>
+        <a href="mailto:parthsarthiduttofficial@gmail.com" class="csocial" title="Email"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROFILES -->
+<section id="profiles" class="alt">
+  <div class="sec-header reveal">
+    <div class="eyebrow">Competitive Profiles</div>
+    <h2 class="sec-title">Ratings &amp; <em>Rankings</em></h2>
+    <p class="sec-sub">Active across every major competitive programming platform with a track record of elite-level performance.</p>
+  </div>
+
+  <div class="profiles-wrap">
+      <h5 class="sec-title1">Profiles</h5>
+    <div class="pf-row pf-row-3 reveal">
+      <div class="pf-card" onclick="openModal('cf')">
+        <img src="https://cdn.iconscout.com/icon/free/png-256/free-code-forces-3628695-3029920.png" class="pf-logo" alt="CF Logo">
+        <div class="pf-top-bar" style="background:#c0392b"></div>
+        <div class="pf-platform">Codeforces</div>
+        <div class="pf-handle">parthsarthidutt_45</div>
+        <div class="pf-rating" style="color:#0e0be0">1649</div>
+        <div class="pf-rank">Expert · 60 rated contests</div>
+        <div class="pf-divider"></div>
+        <div class="pf-stats">
+          <div class="pf-stat"><div class="pf-sv">720+</div><div class="pf-sk">Solved</div></div>
+          <div class="pf-stat"><div class="pf-sv">60</div><div class="pf-sk">Contests</div></div>
+          <div class="pf-stat"><div class="pf-sv">Expert</div><div class="pf-sk">Rank</div></div>
+        </div>
+        <a href="https://codeforces.com/profile/parthsarthidutt_45" target="_blank" class="pf-ext-link" onclick="event.stopPropagation()">Open Profile <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+      </div>
+      <div class="pf-card" onclick="openModal('lc')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/LeetCode_logo_black.png" class="pf-logo" alt="LC">
+        <div class="pf-top-bar" style="background:#2a8c7c"></div>
+        <div class="pf-platform">LeetCode</div>
+        <div class="pf-handle">parthsarthidutt</div>
+        <div class="pf-rating" style="color:#2a8c7c">2029</div>
+        <div class="pf-rank">Knight · Top 1.37% Globally</div>
+        <div class="pf-divider"></div>
+        <div class="pf-stats">
+          <div class="pf-stat"><div class="pf-sv">502</div><div class="pf-sk">Solved</div></div>
+          <div class="pf-stat"><div class="pf-sv">24</div><div class="pf-sk">Contests</div></div>
+          <div class="pf-stat"><div class="pf-sv">Knight</div><div class="pf-sk">Badge</div></div>
+        </div>
+        <a href="https://leetcode.com/u/parthsarthidutt/" target="_blank" class="pf-ext-link" onclick="event.stopPropagation()">Open Profile <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+      </div>
+      <div class="pf-card" onclick="openModal('cc')">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/codechef.svg" class="pf-logo" alt="CodeChef" style="filter: invert(48%) sepia(13%) saturate(3207%) hue-rotate(346deg) brightness(95%) contrast(97%);">
+        <div class="pf-top-bar" style="background:var(--gold)"></div>
+        <div class="pf-platform">CodeChef</div>
+        <div class="pf-handle">theos_45</div>
+        <div class="pf-rating" style="color:var(--gold)">1901</div>
+        <div class="pf-rank">4 Star </div>
+        <div class="pf-divider"></div>
+        <div class="pf-stats">
+          <div class="pf-stat"><div class="pf-sv">88</div><div class="pf-sk">Solved</div></div>
+          <div class="pf-stat"><div class="pf-sv">21</div><div class="pf-sk">Contests</div></div>
+          <div class="pf-stat"><div class="pf-sv">★★★★</div><div class="pf-sk">Stars</div></div>
+        </div>
+        <a href="https://www.codechef.com/users/theos_45" target="_blank" class="pf-ext-link" onclick="event.stopPropagation()">Open Profile <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+      </div>
+    </div>
+      <h5 class="sec-title1"style="margin-top: 80px;">Ranks</h5>
+    <div class="pf-row pf-row-3 reveal">
+      <div class="pf-card" onclick="openModal('div4')">
+        <div class="pf-top-bar" style="background:var(--slate)"></div>
+        <div class="pf-platform">Codeforces · Round 1074 Div. 4</div>
+      
+        <div class="pf-rating" style="color:var(--slate);font-size:1.9rem">Rank #80</div>
+        <div class="pf-rank">Global — among tens of thousands</div>
+        <div class="pf-divider"></div>
+        <div class="pf-stats">
+          <div class="pf-stat"><div class="pf-sv">Top 80</div><div class="pf-sk">World</div></div>
+          <div class="pf-stat"><div class="pf-sv">CF 2185</div><div class="pf-sk">Contest</div></div>
+        </div>
+        <a href="https://codeforces.com/contest/2185/standings/participant/228777170#p228777170" target="_blank" class="pf-ext-link" onclick="event.stopPropagation()">View Standings <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+      </div>
+      <div class="pf-card" onclick="openModal('cc46')">
+        <div class="pf-top-bar" style="background:var(--gold)"></div>
+        <div class="pf-platform">CodeChef · START214B Div. 2</div>
+      
+        <div class="pf-rating" style="font-size:1.9rem">Rank #46</div>
+        <div class="pf-rank">Global Rank 46 in Div. 2</div>
+        <div class="pf-divider"></div>
+        <div class="pf-stats">
+          <div class="pf-stat"><div class="pf-sv">Div 2</div><div class="pf-sk">Division</div></div>
+        </div>
+        <a href="https://www.codechef.com/rankings/START214B?itemsPerPage=100&order=asc&page=1&search=theos&sortBy=rank" target="_blank" class="pf-ext-link" onclick="event.stopPropagation()">View Standings <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+      </div>
+      <div class="pf-card" onclick="openModal('hc')">
+        <div class="pf-top-bar" style="background:var(--gold-lt)"></div>
+        <div class="pf-platform">Meta Hacker Cup 2025 · Round 1</div>
+      
+        <div class="pf-rating" style="color:var(--gold-lt);font-size:1.9rem">Rank #2493</div>
+        <div class="pf-rank">Global · Prestigious annual contest</div>
+        <div class="pf-divider"></div>
+        <div class="pf-stats">
+          <div class="pf-stat"><div class="pf-sv">Meta</div><div class="pf-sk">Org</div></div>
+          <div class="pf-stat"><div class="pf-sv">2025</div><div class="pf-sk">Year</div></div>
+        </div>
+        <a href="https://www.facebook.com/codingcompetitions/hacker-cup/2025/certificate/1954477525122990" target="_blank" class="pf-ext-link" onclick="event.stopPropagation()">View Certificate <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="sec-header reveal">
+    <div class="eyebrow">Work Experience</div>
+    <h2 class="sec-title">Professional <em>Journey</em></h2>
+    <p class="sec-sub">From R&D internships to mentoring the next generation of competitive programmers.</p>
+  </div>
+  <div class="exp-grid">
+    <div class="exp-card reveal">
+      <div class="exp-accent" style="background:var(--gold)"></div>
+      <div class="exp-top">
+        <div>
+          <div class="exp-title">Deep Learning R&D Intern</div>
+          <div class="exp-company">Samsung R&D Institute · Samsung Prism</div>
+        </div>
+        <div class="exp-meta">
+          <div class="exp-period">Oct 2025 – Present</div>
+          <div class="exp-type">Remote</div>
+        </div>
+      </div>
+      <ul class="exp-bullets">
+        <li>Developing deep learning pipelines for robust face embeddings invariant to age, gender, and pose variations — tackling real-world degradation at scale.</li>
+        <li>Designed preprocessing workflows including alignment, super-resolution, and normalization to improve model consistency under extreme degradations.</li>
+      </ul>
+      <div class="exp-tags">
+        <span class="exp-tag">Deep Learning</span>
+        <span class="exp-tag">Face Embeddings</span>
+        <span class="exp-tag">PyTorch</span>
+        <span class="exp-tag">Computer Vision</span>
+        <span class="exp-tag">Samsung Prism</span>
+      </div>
+    </div>
+    <div class="exp-card reveal">
+      <div class="exp-accent" style="background:#4db8a8"></div>
+      <div class="exp-top">
+        <div>
+          <div class="exp-title">Programming Mentor</div>
+          <div class="exp-company">IIIT Naya Raipur</div>
+        </div>
+        <div class="exp-meta">
+          <div class="exp-period">Oct 2025 – Dec 2025</div>
+          <div class="exp-type">Onsite</div>
+        </div>
+      </div>
+      <ul class="exp-bullets">
+        <li>Mentored 100+ students in C programming and competitive programming through hands-on sessions, contests, and debugging workshops.</li>
+        <li>Designed problem sets and guided students through algorithmic thinking, helping juniors build strong contest fundamentals.</li>
+      </ul>
+      <div class="exp-tags">
+        <span class="exp-tag">C Programming</span>
+        <span class="exp-tag">Competitive Programming</span>
+        <span class="exp-tag">Mentoring</span>
+        <span class="exp-tag">DSA</span>
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education" class="alt">
+  <div class="sec-header reveal">
+    <div class="eyebrow">Academic Background</div>
+    <h2 class="sec-title">Education &amp; <em>Credentials</em></h2>
+  </div>
+  <div class="edu-grid">
+    <div class="edu-card reveal" onclick="openModal('edu1')">
+      <div class="edu-accent-bar" style="background:var(--gold)"></div>
+      <div class="edu-year">2023 — 2027</div>
+      <div class="edu-degree">B.Tech — Data Science &amp; Artificial Intelligence</div>
+      <div class="edu-inst">IIIT Naya Raipur · Raipur, Chhattisgarh</div>
+      <div class="edu-gpa">CGPA: 9.32 / 10.0</div>
+      <div class="edu-tags"><span class="edu-tag">DSA</span><span class="edu-tag">Algorithms</span><span class="edu-tag">Machine Learning</span></div>
+    </div>
+    <div class="edu-card reveal" onclick="openModal('edu2')">
+      <div class="edu-accent-bar" style="background:var(--cream2)"></div>
+      <div class="edu-year">2021 — 2023</div>
+      <div class="edu-degree">Higher Secondary (Class XII)</div>
+      <div class="edu-inst">St. Theresa's Convent Sr. Sec. School · Karnal, Haryana</div>
+      <div class="edu-gpa">Score: 94.6% · PCM</div>
+      <div class="edu-tags"><span class="edu-tag">Mathematics</span><span class="edu-tag">Physics</span><span class="edu-tag">Chemistry</span></div>
+    </div>
+
+    
+  </div>
+      <div class="edu-card cert-card reveal">
+      <div class="edu-accent-bar" style="background:var(--gold-dim)"></div>
+      <div class="edu-year">Contest Achievements</div>
+      <div class="edu-degree">Awards &amp; Certifications</div>
+      <div class="edu-inst">ICPC · Meta · Amazon · Codeforces · CodeChef</div>
+      <div style="margin-top:16px">
+        <div class="cert-row"><span class="cert-name">ICPC Chennai Regional — Rank 50</span><span class="cert-yr">2025</span></div>
+        <div class="cert-row"><span class="cert-name">ICPC Kanpur Regional — Rank 72</span><span class="cert-yr">2025</span></div>
+        <div class="cert-row"><span class="cert-name">Amazon ML Summer School</span><span class="cert-yr" style="color:#ff9900">2025</span></div>
+        <div class="cert-row"><span class="cert-name">Meta Hacker Cup — Round 1 Qualified</span><span class="cert-yr">2025</span></div>
+      </div>
+    </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="sec-header reveal">
+    <div class="eyebrow">Technical Arsenal</div>
+    <h2 class="sec-title">Skills &amp; <em>Tools</em></h2>
+  </div>
+  <div class="skills-layout">
+    <div>
+      <div class="sg-title reveal">Algorithms &amp; Data Structures</div>
+      <div class="skill-row reveal"><div class="skill-top"><span class="skill-name">Dynamic Programming</span><span class="skill-lvl">Advanced</span></div><div class="skill-bar"><div class="skill-fill" style="--w:85%"></div></div></div>
+      <div class="skill-row reveal"><div class="skill-top"><span class="skill-name">Binary Search &amp; Two Pointers</span><span class="skill-lvl">Expert</span></div><div class="skill-bar"><div class="skill-fill" style="--w:94%"></div></div></div>
+      <div class="skill-row reveal"><div class="skill-top"><span class="skill-name">Graph Theory</span><span class="skill-lvl">Advanced</span></div><div class="skill-bar"><div class="skill-fill" style="--w:82%"></div></div></div>
+      <div class="skill-row reveal"><div class="skill-top"><span class="skill-name">Greedy &amp; Constructive</span><span class="skill-lvl">Advanced</span></div><div class="skill-bar"><div class="skill-fill" style="--w:90%"></div></div></div>
+      <div class="skill-row reveal"><div class="skill-top"><span class="skill-name">Segment Tree &amp; BIT</span><span class="skill-lvl">Intermediate</span></div><div class="skill-bar"><div class="skill-fill" style="--w:68%"></div></div></div>
+      <div class="skill-row reveal"><div class="skill-top"><span class="skill-name">Number Theory</span><span class="skill-lvl">Intermediate</span></div><div class="skill-bar"><div class="skill-fill" style="--w:74%"></div></div></div>
+      
+      <div class="sg-title reveal" style="margin-top:36px">Programming Languages</div>
+      <div class="skill-row reveal"><div class="skill-top"><span class="skill-name">C++ 17</span><span class="skill-lvl">Native</span></div><div class="skill-bar"><div class="skill-fill" style="--w:98%"></div></div></div>
+      <div class="skill-row reveal"><div class="skill-top"><span class="skill-name">Python 3</span><span class="skill-lvl">Proficient</span></div><div class="skill-bar"><div class="skill-fill" style="--w:85%"></div></div></div>
+      <div class="skill-row reveal"><div class="skill-top"><span class="skill-name">JavaScript / Node.js</span><span class="skill-lvl">Intermediate</span></div><div class="skill-bar"><div class="skill-fill" style="--w:65%"></div></div></div>
+      <div class="skill-row reveal"><div class="skill-top"><span class="skill-name">Go</span><span class="skill-lvl">Learning</span></div><div class="skill-bar"><div class="skill-fill" style="--w:70%"></div></div></div>
+      <div class="skill-row reveal"><div class="skill-top"><span class="skill-name">SQL</span><span class="skill-lvl">Proficient</span></div><div class="skill-bar"><div class="skill-fill" style="--w:78%"></div></div></div>
+    </div>
+    <div>
+      <div class="sg-title reveal">Technologies &amp; Frameworks</div>
+      <div class="tools-grid" style="margin-bottom:36px">
+        <div class="tool-pill reveal">Node.js</div><div class="tool-pill reveal">Express.js</div>
+        <div class="tool-pill reveal">Gin (Go)</div><div class="tool-pill reveal">PostgreSQL</div>
+        <div class="tool-pill reveal">MongoDB</div><div class="tool-pill reveal">MySQL</div>
+        <div class="tool-pill reveal">Redis</div><div class="tool-pill reveal">Docker</div>
+        <div class="tool-pill reveal">Linux</div><div class="tool-pill reveal">Git / GitHub</div>
+        <div class="tool-pill reveal">RESTful APIs</div><div class="tool-pill reveal">JWT / OAuth2</div>
+      </div>
+      <div class="sg-title reveal" style="margin-top: 60px;">Interests &amp; Strengths</div>
+      <div class="interest-grid reveal">
+        <div class="interest-card"><div class="int-label">Backend Dev</div><div class="int-text">High-performance APIs and systems where algorithmic depth meets real-world scale.</div></div>
+        <div class="interest-card"><div class="int-label">AI / ML Systems</div><div class="int-text">LLM integration, deep learning pipelines, and intelligent automation systems.</div></div>
+        <div class="interest-card"><div class="int-label">Problem Solving</div><div class="int-text">Systematic decomposition, edge-case thinking, optimization from first principles.</div></div>
+        <div class="interest-card"><div class="int-label">Fast Learner</div><div class="int-text">Rapidly adapts to new domains, tech stacks, and problem types under pressure.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="icpc" class="alt">
+  <div class="sec-header reveal">
+    <div class="eyebrow">Achievements</div>
+    <h2 class="sec-title">ICPC <em>Journey</em></h2>
+    <p class="sec-sub">Two ICPC Regional qualifications, multiple top-100 global finishes, and a consistent record of excellence on every platform.</p>
+  </div>
+  <div class="achieve-layout">
+    <div>
+      <div class="timeline">
+        <div class="tl-line"></div>
+        <div class="tl-item reveal" onclick="openModal('icpc1')">
+          <div class="tl-dot"></div><div class="tl-connector"></div>
+          <div class="tl-meta"><span class="tl-year">Jan 2026</span><span class="tl-badge tb-gold">ICPC Regionalist</span></div>
+          <div class="tl-title">ICPC Asia Chennai Regionals</div>
+          <div class="tl-desc">Competed onsite against teams from IITs, NITs, and Asia's top universities. Solved 5 problems — team ranked 50th.</div>
+          <div class="tl-hint">Click for details →</div>
+        </div>
+        <div class="tl-item reveal" onclick="openModal('icpc2')">
+          <div class="tl-dot"></div><div class="tl-connector"></div>
+          <div class="tl-meta"><span class="tl-year">Dec 2025</span><span class="tl-badge tb-gold">ICPC Regionalist</span></div>
+          <div class="tl-title">ICPC Asia Kanpur Regionals</div>
+          <div class="tl-desc">Second regional in the same season — a rare feat. Solved 4 problems, ranked 72nd. Two ICPC onsite qualifications in one year.</div>
+          <div class="tl-hint">Click for details →</div>
+        </div>
+        <div class="tl-item reveal" onclick="openModal('icpc3')">
+          <div class="tl-dot"></div><div class="tl-connector"></div>
+          <div class="tl-meta"><span class="tl-year">Nov 2025</span><span class="tl-badge tb-teal">Rank 1 in College</span></div>
+          <div class="tl-title">ICPC Asia Online Preliminary</div>
+          <div class="tl-desc">Solved 4 problems. Top-ranked participant from IIIT Naya Raipur, securing onsite spots at both regional venues.</div>
+          <div class="tl-hint">Click for details →</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="icpc-gallery">
+  <div class="gallery-main" id="gallery-main" onclick="openLB()" style="margin-top: 30;">
+    <img id="gallery-main-img" class="main-img" 
+     src="https://lh3.googleusercontent.com/d/1upvHfELhJrp9TWE0fE-7xdCgsqoa4JOx" 
+     alt="ICPC Achievement">
+    <div class="gallery-overlay" id="gallery-caption">
+      <span class="go-tag" id="gallery-caption-tag">ICPC Regional 2025</span>
+      <span class="go-caption" id="gallery-caption-text">Rank 50 · Chennai Site</span>
+    </div>
+  </div>
+</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="sec-header reveal">
+    <div class="eyebrow">Work</div>
+    <h2 class="sec-title">Notable <em>Projects</em></h2>
+    <p class="sec-sub">Building at the intersection of competitive programming, AI, and real-world backend engineering.</p>
+  </div>
+  <div class="projects-grid">
+    <div class="proj-card reveal" onclick="openModal('proj1')">
+  <div class="proj-acc" style="--accent:var(--gold)"></div>
+  <div class="proj-num">Project 01</div>
+  <div class="proj-name">CodeForPeace</div>
+  <div class="proj-desc">Distributed backend system for compiling and evaluating user-submitted programs with automated verdict generation, async Redis queues, parallel worker pools, and secure Docker-sandboxed execution.</div>
+  <div class="proj-tags"><span class="proj-tag">Go</span><span class="proj-tag">Redis</span><span class="proj-tag">PostgreSQL</span><span class="proj-tag">Docker</span><span class="proj-tag">OAuth 2.0</span></div>
+  <a href="https://github.com/parthsarthi-dutt/code-for-peace" target="_blank" class="proj-link" onclick="event.stopPropagation()">View on GitHub <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+  </div>
+    <div class="proj-card reveal" onclick="openModal('proj2')">
+      <div class="proj-acc" style="--accent:var(--gold)"></div>
+      <div class="proj-num">Project 02</div>
+      <div class="proj-name">NutriScout</div>
+      <div class="proj-desc">Full-stack nutrition tracking app with automated food logging, macro analysis, personalized diet recommendations, and real-time health monitoring powered by a fine-tuned LLM.</div>
+      <div class="proj-tags"><span class="proj-tag">Node.js</span><span class="proj-tag">Express</span><span class="proj-tag">PostgreSQL</span><span class="proj-tag">Python</span><span class="proj-tag">Ollama LLM</span></div>
+      <a href="https://ui-blush-three.vercel.app/" target="_blank" class="proj-link" onclick="event.stopPropagation()">View Project <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+    </div>
+    <div class="proj-card reveal" onclick="openModal('proj3')">
+      <div class="proj-acc" style="--accent:var(--teal)"></div>
+      <div class="proj-num">Project 03</div>
+      <div class="proj-name">AI-Powered Virtual Assistant for GUI Automation</div>
+      <div class="proj-desc">Vision-language desktop automation system combining Gemini LLM reasoning with OmniParser for accurate UI element detection. Features a DSU-based phrase detection algorithm for efficient element grouping.</div>
+      <div class="proj-tags"><span class="proj-tag">Gemini API</span><span class="proj-tag">Tesseract OCR</span><span class="proj-tag">PyQt5</span><span class="proj-tag">Python</span><span class="proj-tag">OmniParser</span></div>
+      <a href="https://github.com/parthsarthi-dutt/Vision_Language_Autonomous_Desktop_Agent" target="_blank" class="proj-link" onclick="event.stopPropagation()">View on GitHub <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+    </div>
+    <div class="proj-card reveal" onclick="openModal('proj4')">
+      <div class="proj-acc" style="--accent:var(--cream2)"></div>
+      <div class="proj-num">Project 04</div>
+      <div class="proj-name">Admin Portal — Automated Seat Allotment (IIIT NR)</div>
+      <div class="proj-desc">Automated B.Tech seat allotment system with complex reservation logic, reducing a 5-day manual process to 1 minute. Built with Python, Node.js, PostgreSQL, and OAuth-based authentication.</div>
+      <div class="proj-tags"><span class="proj-tag">Node.js</span><span class="proj-tag">Express.js</span><span class="proj-tag">PostgreSQL</span><span class="proj-tag">OAuth</span><span class="proj-tag">DSA</span></div>
+      
+    </div>
+    <!-- <div class="proj-card reveal" onclick="openModal('proj4')">
+      <div class="proj-acc" style="--accent:#4db8a8"></div>
+      <div class="proj-num">Project 04</div>
+      <div class="proj-name">CP Template Library</div>
+      <div class="proj-desc">A battle-hardened C++ template with 60+ algorithm implementations, refined across 120+ rated contests. Every module is stress-tested in real competition before inclusion.</div>
+      <div class="proj-tags"><span class="proj-tag">C++17</span><span class="proj-tag">Algorithms</span><span class="proj-tag">Open Source</span></div>
+      <a href="https://github.com/parthsarthi-dutt" target="_blank" class="proj-link" onclick="event.stopPropagation()">View on GitHub <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+    </div> -->
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="alt">
+  <div class="sec-header reveal" style="text-align:center">
+    <div class="eyebrow" style="justify-content:center">Get in Touch</div>
+    <h2 class="sec-title" style="max-width:none">Let's <em>Connect</em></h2>
+    <div style="width:36px;height:1px;background:var(--border2);margin:16px auto 0"></div>
+  </div>
+  <div class="contact-wrap reveal">
+    <p class="contact-intro">Open to SDE internships, backend development roles, AI/ML opportunities, and competitive programming collaborations. Whether you want to discuss graph algorithms, LLM systems, or build something fast and correct — I'm always in.</p>
+    <div class="contact-grid">
+      <a href="mailto:parthsarthiduttofficial@gmail.com" class="clink">
+        <div class="clink-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg></div>
+        <div><span class="clink-label">Email</span><span class="clink-val">parthsarthiduttofficial@gmail.com</span></div>
+      </a>
+      <a href="https://github.com/parthsarthi-dutt" target="_blank" class="clink">
+        <div class="clink-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></div>
+        <div><span class="clink-label">GitHub</span><span class="clink-val">github.com/parthsarthi-dutt</span></div>
+      </a>
+      <a href="https://www.linkedin.com/in/parthsarthi-dutt-b32886189/" target="_blank" class="clink">
+        <div class="clink-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></div>
+        <div><span class="clink-label">LinkedIn</span><span class="clink-val">Parthsarthi Dutt</span></div>
+      </a>
+      <a href="https://codeforces.com/profile/parthsarthidutt_45" target="_blank" class="clink">
+        <div class="clink-icon" style="font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700;color:var(--gold-dim)">CF</div>
+        <div><span class="clink-label">Codeforces</span><span class="clink-val">Expert · 1649 · parthsarthidutt_45</span></div>
+      </a>
+    </div>
+    <div style="text-align:center"><a href="mailto:parthsarthiduttofficial@gmail.com" class="btn btn-primary">Get in Touch</a></div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 <span>Parthsarthi Dutt</span> — IIIT Naya Raipur</p>
+  <p>Built with <span>C++</span>, chai &amp; contest pressure</p>
+</footer>
+
+<script>
+/* AVATAR */
+document.getElementById('avatar-input').addEventListener('change',function(){
+  if(!this.files[0])return;
+  const url=URL.createObjectURL(this.files[0]);
+  document.getElementById('avatar-ph').style.display='none';
+  const img=document.getElementById('avatar-img');img.src=url;img.style.display='block';
+});
+
+/* GALLERY */
+const thumbSrcs=[null,null,null,null];
+const captions=[['ICPC Chennai 2025','Rank 50 · 5 problems solved onsite'],['ICPC Kanpur 2025','Rank 72 · 4 problems solved onsite'],['The Team','The crew behind the code'],['Certificate','ICPC Regional Certificate']];
+let activeThumb=0;
+function thumbClick(el,idx){const input=el.querySelector('input');if(!thumbSrcs[idx]){input.click();return;}setMain(idx);document.querySelectorAll('.gthumb').forEach(t=>t.classList.remove('active'));el.classList.add('active');}
+function thumbUpload(input,idx){if(!input.files[0])return;const url=URL.createObjectURL(input.files[0]);thumbSrcs[idx]=url;const th=document.querySelectorAll('.gthumb')[idx];let img=th.querySelector('img');if(!img){img=document.createElement('img');th.appendChild(img);}img.src=url;th.querySelector('.gthumb-ph').style.display='none';setMain(idx);document.querySelectorAll('.gthumb').forEach(t=>t.classList.remove('active'));th.classList.add('active');}
+function setMain(idx){if(!thumbSrcs[idx])return;document.getElementById('gallery-ph').style.display='none';const mi=document.getElementById('gallery-main-img');mi.src=thumbSrcs[idx];mi.style.display='block';document.getElementById('gallery-caption-tag').textContent=captions[idx][0];document.getElementById('gallery-caption-text').textContent=captions[idx][1];document.getElementById('gallery-caption').style.display='block';activeThumb=idx;}
+function openLB(){if(!thumbSrcs[activeThumb])return;document.getElementById('lb-img').src=thumbSrcs[activeThumb];document.getElementById('lightbox').classList.add('open');}
+function closeLB(){document.getElementById('lightbox').classList.remove('open')}
+document.getElementById('lightbox').addEventListener('click',e=>{if(e.target===e.currentTarget)closeLB()});
+
+/* REVEAL */
+const ro=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('in'),45*i)});},{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+document.querySelectorAll('.skill-row').forEach(r=>{new IntersectionObserver(en=>{en.forEach(e=>{if(e.isIntersecting)e.target.querySelector('.skill-fill')?.classList.add('go')})},{threshold:.4}).observe(r);});
+
+/* NAV */
+window.addEventListener('scroll',()=>{let cur='';document.querySelectorAll('section[id]').forEach(s=>{if(window.scrollY>=s.offsetTop-120)cur=s.id});document.querySelectorAll('.nav-links a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur));},{passive:true});
+
+/* MODAL */
+const M={
+  cf:{title:'Codeforces',sub:'parthsarthidutt_45 · Expert',ey:'Codeforces Profile',stats:[{v:'1649',k:'Current Rating'},{v:'750+',k:'Problems Solved'},{v:'60',k:'Contests'}],desc:'Expert-rated competitive programmer with 720+ problems solved across Div. 2, 3, and 4 rounds. Consistent performance across DP, graph theory, binary search, and number theory.',hi:['Reached Expert rank (1649) through steady contest participation','720+ problems solved spanning A–E difficulty range','Top-80 global finish in CF Round 1074 Div. 4','60 rated contests with consistent improvement'],tags:['DP','Graphs','Number Theory','Greedy','Binary Search'],link:'https://codeforces.com/profile/parthsarthidutt_45',lt:'Open CF Profile'},
+  lc:{title:'LeetCode',sub:'parthsarthidutt · Knight · Top 1.37%',ey:'LeetCode Profile',stats:[{v:'2117',k:'Rating'},{v:'560+',k:'Problems Solved'},{v:'Top 2.15%',k:'Global Rank'}],desc:'Knight-ranked in the global top 1.37% with a rating of 2029. 560+ problems solved with strong coverage of hard problems. Regular weekly contest participant.',hi:['Knight badge — top 2.15% globally with rating 2029','502 problems solved with strong hard-problem coverage','24 rated contests with sustained high performance','Consistent 3–4 problem solves per weekly contest'],tags:['Hard Problems','DP','Backtracking','Graphs','Sliding Window'],link:'https://leetcode.com/u/parthsarthidutt/',lt:'Open LC Profile'},
+  cc:{title:'CodeChef',sub:'theos_45 · 4 Star · Global Rank 46',ey:'CodeChef Profile',stats:[{v:'1901',k:'Rating'},{v:'★★★★',k:'Star Rank'},{v:'#46',k:'Best Global Rank'}],desc:'4-star rated coder with a standout Global Rank 46 in Div. 2 — a top performance. 88 problems solved across 21 contests.',hi:['4-star status with rating 1901','Global Rank 46 in START214B Div. 2','21 rated contests with consistent top performance'],tags:['Div 2','Number Theory','DP','Greedy'],link:'https://www.codechef.com/users/theos_45',lt:'Open CC Profile'},
+  div4:{title:'CF Round 1074 Div. 4',sub:'Global Rank 80',ey:'Notable Contest',stats:[{v:'#80',k:'Global Rank'},{v:'2185',k:'Contest'},{v:'Div 4',k:'Division'}],desc:'Exceptional finish in Codeforces Round 1074 Div. 4 — placing in the global top 80 among tens of thousands of contestants worldwide.',hi:['Top-80 global finish in a massive Codeforces round','Solved all problems with high speed and accuracy','Demonstrates elite contest reflexes and precision'],tags:['Codeforces','Div 4','Global Rank 80'],link:'https://codeforces.com/contest/2185/standings/participant/228777170#p228777170',lt:'View Standings'},
+  cc46:{title:'CodeChef START214B',sub:'Global Rank 46 · Div. 2',ey:'Notable Contest',stats:[{v:'#46',k:'Global Rank'},{v:'Div 2',k:'Division'}],desc:'Global Rank 46 in CodeChef START214B Div. 2 — a truly elite result.',hi:['Top-46 global finish in CodeChef Div. 2','Demonstrates exceptional speed and problem intuition'],tags:['CodeChef','Div 2','Global Rank 46'],link:'https://www.codechef.com/rankings/START214B?itemsPerPage=100&order=asc&page=1&search=theos&sortBy=rank',lt:'View Standings'},
+  hc:{title:'Meta Hacker Cup 2025',sub:'Round 1 · Global Rank 2493',ey:'Notable Contest',stats:[{v:'2493',k:'Global Rank'},{v:'Round 1',k:'Stage'},{v:'2025',k:'Year'}],desc:"Competed in Meta's prestigious annual programming competition. Cleared Round 1 with a global rank of 2493 among participants from top institutions worldwide.",hi:['Cleared Round 1 of Meta Hacker Cup 2025','Global Rank 2493 — among the world\'s best','Certificate issued by Meta for qualification'],tags:['Meta','Hacker Cup','Round 1'],link:'https://www.facebook.com/codingcompetitions/hacker-cup/2025/certificate/1954477525122990',lt:'View Certificate'},
+  icpc1:{title:'ICPC Chennai Regionals 2025',sub:'Asia Regional · Rank 50 · 5 Solved',ey:'ICPC Achievement',stats:[{v:'50',k:'Team Rank'},{v:'5',k:'Problems Solved'},{v:'5 Hrs',k:'Duration'}],desc:'Competed onsite at the ICPC Asia Chennai Regional. Solved 5 problems in the 5-hour contest against teams from IITs, NITs, and top universities across Asia.',hi:['Onsite at ICPC Asia Chennai Regional 2025','Team rank 50 among hundreds of elite teams','Solved 5 problems on a single shared computer','Represented IIIT Naya Raipur at Asia regional level'],tags:['ICPC','Regional','Chennai','Asia 2025'],link:'https://icpc.global/ICPCID/3600RH3MSI7C',lt:'ICPC Profile'},
+  icpc2:{title:'ICPC Kanpur Regionals 2025',sub:'Asia Regional · Rank 72 · 4 Solved',ey:'ICPC Achievement',stats:[{v:'72',k:'Team Rank'},{v:'4',k:'Problems Solved'},{v:'2×',k:'Regional Qualifier'}],desc:'Second ICPC Regional in the same season. Qualifying for two separate onsite regional events in a single year is a rare and remarkable achievement.',hi:['Onsite at ICPC Asia Kanpur Regional 2025','Team rank 72 among Asia\'s top teams','Solved 4 problems in the 5-hour contest','2 regional qualifications in a single season'],tags:['ICPC','Regional','Kanpur','Asia 2025'],link:'https://icpc.global/ICPCID/3600RH3MSI7C',lt:'ICPC Profile'},
+  icpc3:{title:'ICPC Online Preliminary 2025',sub:'Rank #1 at IIIT Naya Raipur',ey:'ICPC Achievement',stats:[{v:'4',k:'Problems Solved'},{v:'#1',k:'College Rank'},{v:'Cleared',k:'Status'}],desc:'Cleared the ICPC Asia Preliminary Round, solving 4 problems and emerging as the top-ranked participant from IIIT Naya Raipur — securing onsite slots at both Chennai and Kanpur.',hi:['Solved 4 problems in the ICPC Preliminary Round','Ranked #1 within IIIT Naya Raipur','Qualified for both Chennai and Kanpur regionals'],tags:['ICPC','Prelims','College Rank 1'],link:'https://icpc.global',lt:'About ICPC'},
+  edu1:{title:'B.Tech Data Science & AI',sub:'IIIT Naya Raipur · 2023–2027',ey:'Education',stats:[{v:'9.32',k:'CGPA / 10'},{v:'DSAI',k:'Branch'},{v:'2027',k:'Graduating'}],desc:'B.Tech in Data Science and AI at IIIT Naya Raipur with a 9.32 CGPA — maintaining top academic performance while qualifying for two ICPC regionals and an Amazon ML School selection simultaneously.',hi:['CGPA 9.32/10 — strong academic performance','Curriculum includes ML, statistics, algorithms, and DS','2× ICPC Regional qualifier during studies','Amazon ML Summer School 2025 selection'],tags:['B.Tech','DSAI','IIIT Naya Raipur','Algorithms'],link:'https://iiitnr.ac.in',lt:'IIIT Naya Raipur'},
+  edu2:{title:'Higher Secondary (XII)',sub:"St. Theresa's Convent · Karnal · 2023",ey:'Education',stats:[{v:'94.6%',k:'Board Score'},{v:'PCM',k:'Stream'},{v:'CS',k:'Elective'}],desc:"94.6% in Class XII from St. Theresa's Convent, Karnal, Haryana. PCM with Computer Science — the spark that started the programming journey.",hi:['94.6% in Class XII board examinations','PCM + Computer Science stream','Computer Science elective introduced C++ — rest is history','Strong math foundation shaped algorithmic thinking'],tags:['XII Board','94.6%','PCM','CS','Karnal'],link:'#',lt:''},
+  proj1:{title:'CodeForPeace',sub:'Go · Redis · PostgreSQL · Docker · OAuth 2.0',ey:'Project',stats:[{v:'Distributed',k:'System'},{v:'Docker',k:'Sandboxed'},{v:'OAuth 2.0',k:'Secured'}],desc:'Distributed backend system to compile and evaluate user-submitted programs with automated verdict generation, async submission pipelines, and secure sandboxed Docker execution.',hi:['Distributed code evaluation with automated verdict generation','Async submission pipeline using Redis queues and worker pools for parallel, fault-tolerant execution','Secure sandboxed Docker containers with CPU and memory isolation for untrusted code','OAuth 2.0 authentication with token validation and PostgreSQL for persistent storage'],tags:['Go','Redis','PostgreSQL','Docker','OAuth 2.0'],link:'https://github.com/parthsarthi-dutt/code-for-peace',lt:'View on GitHub'},
+  proj2:{title:'NutriScout',sub:'Node.js · PostgreSQL · Ollama LLM',ey:'Project',stats:[{v:'LLM',k:'Powered'},{v:'Full Stack',k:'Type'},{v:'Auto',k:'Nutrition'}],desc:'Full-stack nutrition tracking app with automated food logging, macro analysis, personalized diet recommendations, and real-time health charts powered by a fine-tuned LLM via Ollama.',hi:['Automated nutrition tracking — reduces manual inputs dramatically','Fine-tuned LLM (Ollama) for diet and medical queries','Real-time charts with adaptive insights for calories/health metrics','Report-analysis features generating customized diet lifestyle recommendations'],tags:['Node.js','Express','PostgreSQL','Python','Ollama','LLM'],link:'https://ui-blush-three.vercel.app/',lt:'View Project'},
+  proj3:{title:'AI GUI Automation Assistant',sub:'Gemini API · OmniParser · Python',ey:'Project',stats:[{v:'Vision LLM',k:'Core'},{v:'DSU Algo',k:'Detection'},{v:'Desktop',k:'Platform'}],desc:'Intelligent vision-language desktop automation system combining Gemini LLM reasoning with OmniParser for accurate UI element detection. Features a custom DSU-based phrase detection algorithm.',hi:['Combines Gemini LLM with OmniParser for UI element detection','DSU-based phrase detection algorithm for efficient element grouping','Tesseract OCR integration for text recognition in UI','PyQt5 interface for cross-platform desktop automation'],tags:['Gemini API','Tesseract OCR','PyQt5','Python','OmniParser','Computer Vision'],link:'https://github.com/parthsarthi-dutt/Health-Assistant',lt:'View on GitHub'},
+  proj4:{title:'Automated Seat Allotment Portal',sub:'IIIT NR State Quota · Node.js',ey:'Project',stats:[{v:'5 days',k:'→ 1 minute'},{v:'OAuth',k:'Auth'},{v:'College',k:'Scale'}],desc:'Automated B.Tech seat allotment system for IIIT Naya Raipur with complex reservation logic, reducing a 5-day manual process to 1 minute. Full backend with OAuth authentication.',hi:['Reduced 5-day manual process to under 1 minute','Complex reservation and quota logic for state seats','Backend with Node.js, PostgreSQL, and OAuth-based auth','Handles intricate B.Tech seat allotment edge cases'],tags:['Node.js','Express.js','PostgreSQL','OAuth','Python','DSA']},
+  // proj4:{title:'CP Template Library',sub:'C++17 · Open Source',ey:'Project',stats:[{v:'60+',k:'Algorithms'},{v:'120+',k:'Contests Used'},{v:'C++17',k:'Language'}],desc:'A comprehensive C++ template built from years of contest experience. Every algorithm is stress-tested in rated contests before inclusion. Used across ICPC, Codeforces, CodeChef, and Meta HC.',hi:['60+ algorithm implementations: DP, graphs, math, strings','Single-file template — zero contest setup friction','Updated after every new contest insight'],tags:['C++17','STL','PBDS','Template'],link:'https://github.com/parthsarthi-dutt',lt:'View on GitHub'},
+};
+
+function openModal(key){
+  const d=M[key];if(!d)return;
+  document.getElementById('modal-head').innerHTML=`<div class="modal-eyebrow">${d.ey}</div><div class="modal-title">${d.title}</div><div class="modal-sub">${d.sub}</div>`;
+  const lh=d.link&&d.link!=='#'?`<a href="${d.link}" target="_blank" class="modal-link">${d.lt} <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>`:'';
+  document.getElementById('modal-body').innerHTML=`<div class="modal-stat-row">${d.stats.map(s=>`<div class="mstat"><div class="mstat-val">${s.v}</div><div class="mstat-key">${s.k}</div></div>`).join('')}</div><div class="modal-label">Overview</div><div class="modal-desc">${d.desc}</div><div class="modal-label">Highlights</div><ul class="modal-list">${d.hi.map(h=>`<li>${h}</li>`).join('')}</ul><div class="modal-tags">${d.tags.map(t=>`<span class="modal-tag">${t}</span>`).join('')}</div>${lh}`;
+  document.getElementById('modal-overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){document.getElementById('modal-overlay').classList.remove('open');document.body.style.overflow='';}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closeLB();}});
+</script>
+</body>
+</html>
